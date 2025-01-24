@@ -8,10 +8,10 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query-dto';
 import { CreateNewRouteDto } from './dtos/create-new-route.dto';
 import { GetRouteParamDto } from './dtos/get-route-param.dto';
 import { RoutesService } from './providers/routes.service';
-import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query-dto';
 
 @Controller('routes')
 export class RoutesController {
@@ -22,7 +22,7 @@ export class RoutesController {
     private readonly routesService: RoutesService,
   ) {}
 
-  @Get('routes')
+  @Get(':id?')
   public getRoutes(
     @Param() getRouteParamDto: GetRouteParamDto,
     @Query('per', new DefaultValuePipe(10), ParseIntPipe) per: number,
@@ -40,7 +40,7 @@ export class RoutesController {
     return this.routesService.getAllRoutes(getRoutesQuery);
   }
 
-  @Post('routes')
+  @Post()
   public createNewRoute(@Body() createNewRouteDto: CreateNewRouteDto) {
     return this.routesService.createNewRoute(createNewRouteDto);
   }

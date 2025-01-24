@@ -24,7 +24,7 @@ export class CreateNewRouteProvider {
 
   public async createNewRoute(createNewRouteDto: CreateNewRouteDto) {
     // we want to persist this record in the DB
-    // Nairobi -> Mombasa
+    // eg. Nairobi -> Mombasa
     // check if there is an existing route with same origin and destination already exists
     let existingRoute = null;
     try {
@@ -40,7 +40,6 @@ export class CreateNewRouteProvider {
       });
     }
 
-    console.log('existingRoute', existingRoute);
     if (existingRoute) {
       throw new BadRequestException(ROUTE_DUPLICATION_ERROR.message, {
         description: ROUTE_DUPLICATION_ERROR.description,
