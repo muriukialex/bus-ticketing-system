@@ -11,6 +11,7 @@ import databaseConfig from './config/database.config';
 import environmentValidation from './config/environment.validation';
 import { RoutesModule } from './routes/routes.module';
 import { UserModule } from './user/user.module';
+import { PaginationModule } from './common/pagination/pagination.module';
 
 const ENV = process.env.NODE_ENV;
 const ENV_FILE_PATH = ENV ? '.env' : `.env.${ENV}`;
@@ -43,6 +44,7 @@ const ENV_FILE_PATH = ENV ? '.env' : `.env.${ENV}`;
     // jwt configuration
     ConfigModule.forFeature(jwtConfig),
     JwtModule.registerAsync(jwtConfig.asProvider()),
+    PaginationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

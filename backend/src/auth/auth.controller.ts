@@ -13,13 +13,13 @@ export class AuthController {
   ) {}
   @Post('sign-in')
   @HttpCode(HttpStatus.OK)
-  public async signIn(@Body() signInDto: SignInDto) {
+  public signIn(@Body() signInDto: SignInDto) {
     return this.authService.signIn(signInDto);
   }
 
   @Post('sign-up')
   @HttpCode(HttpStatus.OK)
-  public async signUp(@Body() signUpDto: SignUpDto) {
+  public signUp(@Body() signUpDto: SignUpDto) {
     return this.authService.signUp(signUpDto);
   }
 }

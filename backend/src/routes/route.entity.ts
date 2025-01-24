@@ -6,38 +6,30 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class User {
+export class Route {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
     type: 'varchar',
     nullable: false,
-    length: 120,
+    length: 255,
   })
-  firstName: string;
+  origin: string;
 
   @Column({
     type: 'varchar',
     nullable: false,
-    length: 120,
+    length: 255,
   })
-  lastName: string;
-
-  @Column({
-    type: 'varchar',
-    nullable: false,
-    length: 120,
-    unique: true,
-  })
-  email: string;
-
-  @Column({
-    type: 'varchar',
-    nullable: false,
-  })
-  password: string;
+  destination: string;
 
   @CreateDateColumn()
-  joinedOn: Date;
+  createdAt: Date;
+
+  @Column({
+    type: 'numeric',
+    nullable: false,
+  })
+  distance: number;
 }
