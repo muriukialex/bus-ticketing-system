@@ -17,10 +17,12 @@ export class PaginationProvider {
   public async paginateQuery<T extends ObjectLiteral>(
     paginationQuery: PaginationQueryDto,
     repository: Repository<T>,
+    additionalParams?: any,
   ): Promise<PaginationInterface<T>> {
     const results = await repository.find({
       skip: (paginationQuery.page - 1) * paginationQuery.per,
       take: paginationQuery.per,
+      where: additionalParams,
     });
 
     const baseUrl =
@@ -30,7 +32,7 @@ export class PaginationProvider {
     /**
      * Create the meta object
      */
-    const totalItems = await repository.count();
+    const totalItems = results.length;
     const itemsPerPage = paginationQuery.per;
     const currentPage = paginationQuery.page;
     const totalPages = Math.ceil(totalItems / paginationQuery.per);

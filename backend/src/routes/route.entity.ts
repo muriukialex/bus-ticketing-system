@@ -1,7 +1,9 @@
+import { TravellingBus } from 'src/travelling-bus/travelling-bus.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -32,4 +34,7 @@ export class Route {
     nullable: false,
   })
   distance: number;
+
+  @OneToMany(() => TravellingBus, (travellingBus) => travellingBus.route)
+  travellingBuses: TravellingBus[];
 }

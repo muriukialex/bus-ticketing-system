@@ -9,22 +9,22 @@ import {
   UNABLE_TO_PROCESS_REQUEST,
 } from 'src/common/error-messages/error-messages';
 import { Repository } from 'typeorm';
-import { Route } from '../route.entity';
+import { TravellingBus } from '../travelling-bus.entity';
 
 @Injectable()
-export class GetRouteByIdProvider {
+export class GetTravellingBusByIdProvider {
   constructor(
     /**
-     * Inject routeRepository
+     * Inject travellingBusRepository
      */
-    @InjectRepository(Route)
-    private readonly routeRepository: Repository<Route>,
+    @InjectRepository(TravellingBus)
+    private readonly travellingBusRepository: Repository<TravellingBus>,
   ) {}
 
-  public async getRouteById(id: number) {
-    let route = null;
+  public async getTravellingBusById(id: number) {
+    let travellingBus = null;
     try {
-      route = await this.routeRepository.findOneBy({
+      travellingBus = await this.travellingBusRepository.findOneBy({
         id,
       });
     } catch (error) {
@@ -33,12 +33,12 @@ export class GetRouteByIdProvider {
       });
     }
 
-    if (!route) {
+    if (!travellingBus) {
       throw new BadRequestException(ROUTE_DOES_NOT_EXIST.message, {
         description: ROUTE_DOES_NOT_EXIST.description,
       });
     }
 
-    return route;
+    return travellingBus;
   }
 }

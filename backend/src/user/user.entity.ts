@@ -1,7 +1,9 @@
+import { Booking } from 'src/booking/booking.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -40,4 +42,7 @@ export class User {
 
   @CreateDateColumn()
   joinedOn: Date;
+
+  @OneToMany(() => Booking, (booking) => booking.user)
+  bookings: Booking[];
 }

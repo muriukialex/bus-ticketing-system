@@ -37,7 +37,7 @@ export class AccessTokenGuard implements CanActivate {
     }
 
     try {
-      const requestPayload = this.jwtService.verifyAsync(
+      const requestPayload = await this.jwtService.verifyAsync(
         accesstoken,
         this.jwtConfiguration,
       );

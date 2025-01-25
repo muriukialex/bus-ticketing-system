@@ -4,35 +4,47 @@ import { UNABLE_TO_PROCESS_REQUEST } from 'src/common/error-messages/error-messa
 import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query-dto';
 import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 import { Repository } from 'typeorm';
-import { Route } from '../route.entity';
+import { TravellingBus } from '../travelling-bus.entity';
 
 @Injectable()
-export class GetAllRoutesProvider {
+export class GetTravellingBusProvider {
   constructor(
     /**
      * Inject paginationProvider
      */
     private readonly paginationProvider: PaginationProvider,
     /**
-     * Inject routesRepository
+     * Inject travellingBusRepository
      */
-    @InjectRepository(Route)
-    private readonly routesRepository: Repository<Route>,
+    @InjectRepository(TravellingBus)
+    private readonly travellingBusRepository: Repository<TravellingBus>,
   ) {}
 
-  public async getAllRoutes(getRoutesQuery: PaginationQueryDto) {
-    let routes = null;
+  public async getAllTravellingBuses(
+    getTravellingBusQuery: PaginationQueryDto,
+    origin?: string,
+    destination?: string,
+  ) {
+    let travellingBuses = null;
 
     try {
-      routes = await this.paginationProvider.paginateQuery(
-        getRoutesQuery,
-        this.routesRepository,
+      const additionalParams = {
+        route: {
+          origin: origin,
+          destination: destination,
+        },
+      };
+
+      travellingBuses = await this.paginationProvider.paginateQuery(
+        getTravellingBusQuery,
+        this.travellingBusRepository,
+        additionalParams,
       );
     } catch (error) {
       throw new RequestTimeoutException(UNABLE_TO_PROCESS_REQUEST.message, {
         description: UNABLE_TO_PROCESS_REQUEST.description,
       });
     }
-    return routes;
+    return travellingBuses;
   }
 }

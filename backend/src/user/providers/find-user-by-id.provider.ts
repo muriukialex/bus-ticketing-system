@@ -9,18 +9,20 @@ import { Repository } from 'typeorm';
 import { User } from '../user.entity';
 
 @Injectable()
-export class FindUserByEmailProvider {
-  /**
-   * Inject userRepository
-   */
-  @InjectRepository(User)
-  private readonly userRepository: Repository<User>;
+export class FindUserByIdProvider {
+  constructor(
+    /**
+     * Inject userRepository
+     */
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+  ) {}
 
-  public async findUserByEmail(email: string): Promise<User | undefined> {
+  public async findUserById(id: number) {
     let user: User = null;
 
     try {
-      user = await this.userRepository.findOneBy({ email });
+      user = await this.userRepository.findOneBy({ id });
     } catch (error) {
       throw new RequestTimeoutException(UNABLE_TO_PROCESS_REQUEST.message, {
         description: UNABLE_TO_PROCESS_REQUEST.description,
@@ -28,7 +30,7 @@ export class FindUserByEmailProvider {
     }
 
     if (!user) {
-      throw new UnauthorizedException("The user email provided doesn't exist");
+      throw new UnauthorizedException("The user id provided doesn't exist");
     }
 
     return user;

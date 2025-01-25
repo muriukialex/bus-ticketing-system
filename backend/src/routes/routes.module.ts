@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PaginationModule } from 'src/common/pagination/pagination.module';
+import { TravellingBus } from 'src/travelling-bus/travelling-bus.entity';
 import { CreateNewRouteProvider } from './providers/create-new-route.provider';
 import { GetAllRoutesProvider } from './providers/get-all-routes.provider';
 import { GetRouteByIdProvider } from './providers/get-route-by-id.provider';
@@ -16,6 +17,7 @@ import { RoutesController } from './routes.controller';
     GetRouteByIdProvider,
     GetAllRoutesProvider,
   ],
-  imports: [TypeOrmModule.forFeature([Route]), PaginationModule],
+  imports: [TypeOrmModule.forFeature([Route, TravellingBus]), PaginationModule],
+  exports: [RoutesService],
 })
 export class RoutesModule {}
