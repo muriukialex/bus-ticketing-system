@@ -1,0 +1,14 @@
+/.next/
+/node_modules
+.DS_Store
+.env*.local
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+npm-debug.log*
+.env
+/public/__env.js
+
+
+# Contentlayer
+.contentlayer
