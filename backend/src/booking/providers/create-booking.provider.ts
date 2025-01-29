@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
+  BUS_SEAT_DOES_NOT_EXIST,
   BUS_SEATS_ARE_EMPTY_ERROR,
   UNABLE_TO_PROCESS_REQUEST,
 } from 'src/common/error-messages/error-messages';
@@ -53,6 +54,18 @@ export class CreateBookingProvider {
     // update travellingBus to deduct the busSeats by one
     const busSeats = travellingBus.busSeats - 1;
     travellingBus.busSeats = busSeats;
+
+    // ensure that the bus seat number to book exists
+    if (!travellingBus.seats.includes(createBookingDto.seatNumber)) {
+      throw new BadRequestException(BUS_SEAT_DOES_NOT_EXIST.message, {
+        description: BUS_SEAT_DOES_NOT_EXIST.description,
+      });
+    }
+
+    // update the seats array in the travellingBus to remove the booked seat
+    travellingBus.seats = travellingBus.seats.filter(
+      (seat) => createBookingDto.seatNumber !== seat,
+    );
 
     await this.travellingBusService.updateTravellingBus(travellingBus);
 

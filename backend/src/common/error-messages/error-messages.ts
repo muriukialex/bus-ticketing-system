@@ -19,11 +19,21 @@ export const RECORD_DOES_NOT_EXIST = {
 };
 
 export const ROUTE_DOES_NOT_EXIST = {
-  message: 'The route passed does not exist',
+  message: 'The route provided does not exist',
   description: 'Route does not exist',
+};
+
+export const TRAVELLING_BUS_DOES_NOT_EXIST = {
+  message: 'The travelling bus provided does not exist',
+  description: 'Travelling bus does not exist',
 };
 
 export const BUS_SEATS_ARE_EMPTY_ERROR = {
   message: 'The bus seats are empty',
   description: 'Bus seats are empty',
+};
+
+export const BUS_SEAT_DOES_NOT_EXIST = {
+  message: 'The requested seat number has been booked or does not exist',
+  description: 'Requested seat number has been booked or does not exist',
 };

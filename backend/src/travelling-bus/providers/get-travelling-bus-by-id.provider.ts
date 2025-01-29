@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
-  ROUTE_DOES_NOT_EXIST,
+  TRAVELLING_BUS_DOES_NOT_EXIST,
   UNABLE_TO_PROCESS_REQUEST,
 } from 'src/common/error-messages/error-messages';
 import { Repository } from 'typeorm';
@@ -34,8 +34,8 @@ export class GetTravellingBusByIdProvider {
     }
 
     if (!travellingBus) {
-      throw new BadRequestException(ROUTE_DOES_NOT_EXIST.message, {
-        description: ROUTE_DOES_NOT_EXIST.description,
+      throw new BadRequestException(TRAVELLING_BUS_DOES_NOT_EXIST.message, {
+        description: TRAVELLING_BUS_DOES_NOT_EXIST.description,
       });
     }
 

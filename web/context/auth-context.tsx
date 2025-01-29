@@ -46,7 +46,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
             try {
                 // Get token from cookies
                 const userToken = Cookies.get('X-AUTH-TOKEN');
-                console.log('userToken', userToken);
                 if (!userToken) {
                     pushToLogin();
                     setLoading(false);
@@ -59,7 +58,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
                 setIsAuthenticated(true);
                 setUserData(userData);
-                push(links.home);
+                // push(links.home);
             } catch {
                 toast.error('Unauthorized');
                 pushToLogin();
