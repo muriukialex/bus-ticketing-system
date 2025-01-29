@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Web Version - Bus Ticketing Service
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This is the web version of the Bus Ticketing Service, providing an intuitive user interface for booking bus tickets. Built with Next.js and TypeScript, it enables users to view for available routes, buses, select seats, and complete booking.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. User Authentication
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+-   Sign Up and Sign In functionality for users.
+-   Secure authentication using JWT.
 
-## Learn More
+### 2. Routes Display
 
-To learn more about Next.js, take a look at the following resources:
+-   Users can view available routes by providing origin and destination.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Available Buses
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+-   Displays a list of buses traveling on a selected route along with departure time and pricing.
 
-## Deploy on Vercel
+### 4. Seat Selection
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-   Users can select seats from the available options.
+-   Booked seats are visually indicated as unavailable.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 5. Booking Confirmation
+
+-   Users can confirm their booking after selecting a seat.
+-   Booking details are stored and retrievable.
+
+---
+
+## Tech Stack
+
+-   **Frontend:** Next.js, TypeScript, Tailwind CSS
+-   **State Management:** SWR for data fetching
+-   **Backend:** NestJS API
+-   **Database:** PostgreSQL (via backend API)
+
+---
+
+## Installation & Setup
+
+### Prerequisites
+
+-   Node.js installed
+-   Backend API running (Follow the backend setup guide)
+
+### Steps
+
+1. Clone the repository:
+    ```sh
+    git clone git@github.com:muriukialex/bus-ticketing-system.git
+    ```
+2. Navigate into the project directory:
+    ```sh
+    cd web
+    ```
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
+4. Set up environment variables by creating a `.env.local` file and configuring API URLs:
+    ```env
+    NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
+    ```
+5. Start the development server:
+    ```sh
+    npm run dev
+    ```
+6. Open the application in the browser:
+    ```
+    http://localhost:3001
+    ```
+
+---
+
+## Usage
+
+### 1. Searching for Buses
+
+-   Users can view destinations and find available buses.
+
+### 2. Selecting Seats
+
+-   Available seats are displayed, and users can choose from unbooked seats.
+
+### 3. Booking Confirmation
+
+-   Users confirm their seat selection and complete the booking.
+
+### 4. Viewing Bookings
+
+-   Users can view their past bookings from their account section.(TODO)
+
+---
+
+## Deployment
+
+To deploy the application:
+
+1. Build the project:
+    ```sh
+    npm run build
+    ```
+2. Start the production server:
+    ```sh
+    npm start
+    ```
+
+---
+
+## Contribution
+
+-   Contributions are welcome! Please create a pull request with any improvements.
+
+---
