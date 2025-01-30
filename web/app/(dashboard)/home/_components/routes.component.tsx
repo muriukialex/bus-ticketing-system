@@ -16,7 +16,7 @@ const Routes = ({ data, error, isLoading, mutate }: RoutesProps) => {
     if (error) {
         return (
             <>
-                <p>An error occurred</p>
+                <p className="my-4">An error occurred</p>
                 <Button type="button" onClick={() => mutate()}>
                     Refresh
                 </Button>

@@ -26,10 +26,10 @@ export class Booking {
   travellingBus: TravellingBus;
 
   @Column({
-    type: 'varchar',
+    type: 'simple-array',
     nullable: false,
   })
-  seatNumber: string;
+  seatNumbers: Array<string>;
 
   @CreateDateColumn()
   timeBooked: Date;

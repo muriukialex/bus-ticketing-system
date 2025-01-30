@@ -42,24 +42,6 @@ export class PaginationProvider {
     const previousPage =
       paginationQuery.page === 1 ? null : paginationQuery.page - 1;
 
-    /**
-     * Create Request URLs
-     * 
-     * ie. 
-     * meta: {
-          totalItems: number;
-          itemsPerPage: number;
-          currentPage: number;
-          totalPages: number;
-      };
-     * links: {
-          first: string;
-          last: string;
-          current: string;
-          next: string;
-          previous: string;
-      };
-     */
     const meta = {
       totalItems,
       itemsPerPage,

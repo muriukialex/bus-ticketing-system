@@ -58,7 +58,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
                 setIsAuthenticated(true);
                 setUserData(userData);
-                // push(links.home);
             } catch {
                 toast.error('Unauthorized');
                 pushToLogin();

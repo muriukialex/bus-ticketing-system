@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { IsArray, IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateBookingDto {
   // what do you need to book a vehicle for travelling?
@@ -12,8 +12,9 @@ export class CreateBookingDto {
   // which vehicle is being booked
   travellingBusId: number;
 
-  @IsString()
+  @IsArray()
+  @IsString({ each: true })
   @IsNotEmpty()
-  // seat number that has been booked
-  seatNumber: string;
+  // seat numbers that are been booked
+  seatNumbers: string[];
 }

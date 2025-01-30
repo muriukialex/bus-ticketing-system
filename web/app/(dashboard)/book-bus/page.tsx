@@ -42,14 +42,14 @@ const BookBus = () => {
     });
 
     const bookBus = async ({
-        seatNumber,
+        seatNumbers,
         travellingBusId,
     }: {
-        seatNumber: string;
+        seatNumbers: Array<string>;
         travellingBusId: number;
     }) => {
         const payload: CreateBooking = {
-            seatNumber: seatNumber,
+            seatNumbers: seatNumbers,
             travellingBusId: travellingBusId,
             userId: userData?.id,
         };

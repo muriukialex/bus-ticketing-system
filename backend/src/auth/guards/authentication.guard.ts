@@ -33,32 +33,26 @@ export class AuthenticationGuard implements CanActivate {
     [AuthType.None]: { canActivate: () => true },
   };
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    // authTypes from the refelector, they are 0 or 1, Bearer or None(for no authorization)
     const authTypes =
-      this.reflector.getAllAndOverride(
-        AUTH_TYPE_KEY,
-        [context.getHandler(), context.getClass()],
-        // get metadata from the class and the methods within the class
-      ) || AuthenticationGuard.defaultAuthType;
+      this.reflector.getAllAndOverride(AUTH_TYPE_KEY, [
+        context.getHandler(),
+        context.getClass(),
+      ]) || AuthenticationGuard.defaultAuthType;
 
-    // get array of auth guards
     const guards = Array.isArray(authTypes)
       ? authTypes
           .map((type: string | number) => this.authTypeGuardMap[type])
           .flat()
-      : [this.authTypeGuardMap[AuthenticationGuard.defaultAuthType]]; // convert default auth guard to array
+      : [this.authTypeGuardMap[AuthenticationGuard.defaultAuthType]];
 
-    // Loop through the auth guards and call canActivate
     for (const guard of guards) {
-      const canActivate = await Promise.resolve(guard.canActivate(context)); // Promise.resolve makes canActivate a promise, await to resolve
+      const canActivate = await Promise.resolve(guard.canActivate(context));
 
-      // If any guard returns true, then the request is authorized
       if (canActivate) {
         return canActivate;
       }
     }
 
-    // If none of the guards return true, then the request is unauthorized
     throw new UnauthorizedException();
   }
 }

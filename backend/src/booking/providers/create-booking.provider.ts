@@ -36,36 +36,34 @@ export class CreateBookingProvider {
     private readonly userService: UserService,
   ) {}
   public async createBooking(createBookingDto: CreateBookingDto) {
-    // save the travelingBus from the travellingBusId
     const travellingBus: TravellingBus =
       await this.travellingBusService.getTravellingBusById(
         createBookingDto.travellingBusId,
       );
 
-    // save the user from the userId
     const user = await this.userService.findUserById(createBookingDto.userId);
 
-    // if busSeats is less than 1, notify user that bus seats are empty
     if (travellingBus.busSeats < 1) {
       throw new BadRequestException(BUS_SEATS_ARE_EMPTY_ERROR.message, {
         description: BUS_SEATS_ARE_EMPTY_ERROR.description,
       });
     }
-    // update travellingBus to deduct the busSeats by one
-    const busSeats = travellingBus.busSeats - 1;
-    travellingBus.busSeats = busSeats;
 
-    // ensure that the bus seat number to book exists
-    if (!travellingBus.seats.includes(createBookingDto.seatNumber)) {
-      throw new BadRequestException(BUS_SEAT_DOES_NOT_EXIST.message, {
-        description: BUS_SEAT_DOES_NOT_EXIST.description,
-      });
+    for (const seatToBook of createBookingDto.seatNumbers) {
+      if (!travellingBus.seats.includes(seatToBook)) {
+        throw new BadRequestException(BUS_SEAT_DOES_NOT_EXIST.message, {
+          description: BUS_SEAT_DOES_NOT_EXIST.description,
+        });
+      }
+
+      travellingBus.seats = travellingBus.seats.filter(
+        (seat) => seatToBook !== seat,
+      );
     }
 
-    // update the seats array in the travellingBus to remove the booked seat
-    travellingBus.seats = travellingBus.seats.filter(
-      (seat) => createBookingDto.seatNumber !== seat,
-    );
+    const busSeats =
+      travellingBus.busSeats - createBookingDto.seatNumbers.length;
+    travellingBus.busSeats = busSeats;
 
     await this.travellingBusService.updateTravellingBus(travellingBus);
 

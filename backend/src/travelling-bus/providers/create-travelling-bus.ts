@@ -31,7 +31,6 @@ export class CreateTravellingBusProvider {
   public async createTravellingBus(
     createTravellingBusDto: CreateTravellingBusDto,
   ) {
-    // verify that the routeId used to create the travelling bus is valid
     const validRoute = await this.routeService.getRouteById(
       createTravellingBusDto.routeId,
     );

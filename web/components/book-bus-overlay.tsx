@@ -22,10 +22,10 @@ export function BookBusOverlay({
     travellingBus: TravellingBus;
     bookingRequestOngoing: boolean;
     bookBus: ({
-        seatNumber,
+        seatNumbers,
         travellingBusId,
     }: {
-        seatNumber: string;
+        seatNumbers: Array<string>;
         travellingBusId: number;
     }) => Promise<void>;
 }) {
@@ -63,12 +63,12 @@ export function BookBusOverlay({
     const confirmBooking = async () => {
         try {
             await bookBus({
-                seatNumber: seatsToBook[0],
+                seatNumbers: seatsToBook,
                 travellingBusId: travellingBus.id,
             });
             clearSeatsToBook();
         } catch {
-            toast.success('Something went wrong');
+            toast.error('Something went wrong');
         }
     };
 

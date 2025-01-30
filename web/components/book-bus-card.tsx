@@ -12,10 +12,10 @@ interface BookBusCardProps {
     handleAddToCart: () => void;
     bookingRequestOngoing: boolean;
     bookBus: ({
-        seatNumber,
+        seatNumbers,
         travellingBusId,
     }: {
-        seatNumber: string;
+        seatNumbers: Array<string>;
         travellingBusId: number;
     }) => Promise<void>;
 }
@@ -26,7 +26,7 @@ const BookBusCard = ({
     setIsCartOpen,
     handleAddToCart,
     bookingRequestOngoing,
-    bookBus
+    bookBus,
 }: BookBusCardProps) => {
     return (
         <div className="flex items-center justify-between">

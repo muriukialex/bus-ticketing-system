@@ -36,10 +36,8 @@ export class SignInProvider {
     private readonly jwtConfiguration: ConfigType<typeof jwtConfig>,
   ) {}
   public async signIn(signInDto: SignInDto) {
-    // check if user with this email exists
     const user = await this.userService.findUserByEmail(signInDto.email);
 
-    // validate if user provided the correct password
     let passwordsMatch: boolean = false;
 
     try {
@@ -57,7 +55,6 @@ export class SignInProvider {
       });
     }
 
-    // issue a JWT key if the user has provided a correct password
     const accessToken = await this.jwtService.signAsync(
       {
         sub: user.id,

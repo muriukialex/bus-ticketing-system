@@ -14,10 +14,10 @@ interface TravellingBusProps {
     handleAddToCart: () => void;
     bookingRequestOngoing: boolean;
     bookBus: ({
-        seatNumber,
+        seatNumbers,
         travellingBusId,
     }: {
-        seatNumber: string;
+        seatNumbers: Array<string>;
         travellingBusId: number;
     }) => Promise<void>;
 }

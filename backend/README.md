@@ -105,7 +105,7 @@ This is a small bus ticketing service API built with NestJS and TypeORM. It incl
 {
   "userId": 1,
   "travellingBusId": 6,
-  "seatNumber": "1X"
+  "seatNumbers": ["1A"]
 }
 ```
 
