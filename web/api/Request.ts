@@ -1,7 +1,7 @@
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL
 
 const request = async function <T>(
     req: AxiosRequestConfig
