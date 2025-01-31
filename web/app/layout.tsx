@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
+import Head from 'next/head';
 import { Toaster } from 'react-hot-toast';
 import './globals.css';
 
@@ -17,6 +18,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+            <Head>
+                <meta
+                    httpEquiv="Content-Security-Policy"
+                    content="upgrade-insecure-requests"
+                />
+            </Head>
+
             <body className={nunito.className}>
                 <Toaster
                     containerStyle={{
