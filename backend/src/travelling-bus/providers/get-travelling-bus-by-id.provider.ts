@@ -22,7 +22,7 @@ export class GetTravellingBusByIdProvider {
   ) {}
 
   public async getTravellingBusById(id: number) {
-    let travellingBus = null;
+    let travellingBus: TravellingBus = null;
     try {
       travellingBus = await this.travellingBusRepository.findOneBy({
         id,

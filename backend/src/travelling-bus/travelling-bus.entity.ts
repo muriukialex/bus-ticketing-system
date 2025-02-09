@@ -14,10 +14,10 @@ export class TravellingBus {
   id: number;
 
   @ManyToOne(() => Route, (route) => route.travellingBuses, { eager: true })
-  route: Route;
+  route?: Route;
 
   @OneToMany(() => Booking, (booking) => booking.travellingBus)
-  booking: Booking;
+  booking?: Booking;
 
   @Column({
     type: 'varchar',

@@ -2,6 +2,7 @@ import { Injectable, RequestTimeoutException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UNABLE_TO_PROCESS_REQUEST } from 'src/common/error-messages/error-messages';
 import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query-dto';
+import { PaginationInterface } from 'src/common/pagination/interfaces/pagination.interface';
 import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 import { Repository } from 'typeorm';
 import { TravellingBus } from '../travelling-bus.entity';
@@ -25,7 +26,7 @@ export class GetTravellingBusProvider {
     origin?: string,
     destination?: string,
   ) {
-    let travellingBuses = null;
+    let travellingBuses: PaginationInterface<TravellingBus> = null;
 
     try {
       const additionalParams = {
