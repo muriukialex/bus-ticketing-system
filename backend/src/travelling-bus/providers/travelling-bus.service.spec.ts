@@ -99,7 +99,7 @@ describe('TravellingBusService', () => {
   });
 
   describe('createTravellingBus', () => {
-    it('should call createTravellingBus method on CreateTravellingBusProvider', async () => {
+    it('should test createTravellingBus method on CreateTravellingBusProvider', async () => {
       const createTravellingBusDto = {
         routeId: 1,
         busName: 'KAV221P',
@@ -121,7 +121,7 @@ describe('TravellingBusService', () => {
   });
 
   describe('getAllTravellingBuses', () => {
-    it('should call getAllTravellingBuses service on GetTravellingBusProvider', async () => {
+    it('should test getAllTravellingBuses service on GetTravellingBusProvider', async () => {
       const travellingBuses = await service.getAllTravellingBuses({
         page: 1,
         per: 5,
@@ -148,7 +148,7 @@ describe('TravellingBusService', () => {
   });
 
   describe('getTravellingBusById', () => {
-    it('should call getTravellingBusById service on GetTravellingBusByIdProvider', async () => {
+    it('should test getTravellingBusById service on GetTravellingBusByIdProvider', async () => {
       const travellingBus = await service.getTravellingBusById(1);
       expect(travellingBus.busName).toEqual('KAV221P');
       expect(travellingBus.busSeats).toEqual(45);
@@ -158,7 +158,7 @@ describe('TravellingBusService', () => {
   });
 
   describe('updateTravellingBus', () => {
-    it('should call updateTravellingBus service on UpdateTravellingBusProvider', async () => {
+    it('should test updateTravellingBus service on UpdateTravellingBusProvider', async () => {
       const updatedTravellingBus = await service.updateTravellingBus({
         id: 1,
         busName: 'KBC001',

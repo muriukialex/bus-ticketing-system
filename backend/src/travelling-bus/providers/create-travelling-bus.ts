@@ -9,6 +9,7 @@ import {
   UNABLE_TO_PROCESS_REQUEST,
 } from 'src/common/error-messages/error-messages';
 import { RoutesService } from 'src/routes/providers/routes.service';
+import { Route } from 'src/routes/route.entity';
 import { Repository } from 'typeorm';
 import { CreateTravellingBusDto } from '../dtos/create-travelling-bus.dto';
 import { TravellingBus } from '../travelling-bus.entity';
@@ -31,7 +32,7 @@ export class CreateTravellingBusProvider {
   public async createTravellingBus(
     createTravellingBusDto: CreateTravellingBusDto,
   ) {
-    const validRoute = await this.routeService.getRouteById(
+    const validRoute: Route = await this.routeService.getRouteById(
       createTravellingBusDto.routeId,
     );
 
