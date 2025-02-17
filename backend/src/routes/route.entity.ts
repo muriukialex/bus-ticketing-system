@@ -36,5 +36,5 @@ export class Route {
   distance: number;
 
   @OneToMany(() => TravellingBus, (travellingBus) => travellingBus.route)
-  travellingBuses: TravellingBus[];
+  travellingBuses?: TravellingBus[];
 }
