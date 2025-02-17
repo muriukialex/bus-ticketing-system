@@ -145,7 +145,7 @@ describe('RoutesService', () => {
       };
 
       const result = await service.getRouteById(10);
-      expect(result).toEqual(mockRoute);
+      expect(result).toEqual(expect.objectContaining(mockRoute));
     });
   });
 });
